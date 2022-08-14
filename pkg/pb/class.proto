@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message Class {
+    string id = 1;
+    string owner = 3;
+    string teachers = 4;
+    string students = 5;
+
+}
+
+service ClassManager {
+    rpc CreateClass(CreateClassRequest) returns (Class) {}
+    rpc GetClass(GetClassRequest) returns (Class) {}
+    rpc UpdateClass(UpdateClassRequest) returns (Class) {}
+    rpc DeleteClass(DeleteClassRequest) returns (Class) {}
+    rpc GetClasses(GetClassesRequest) returns (GetClassesReply) {}
+}
+
+message CreateClassRequest {
+    Class data = 1;
+}
+
+message GetClassRequest {
+    string id = 1;
+}
+
+message UpdateClassRequest {
+    string id = 1;
+    Class data = 2;
+}
+
+message DeleteClassRequest {
+    string id = 1;
+}
+
+message GetClassesRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetClassesReply {
+    int64 total_count = 1;
+    repeated Class items = 2;
+}

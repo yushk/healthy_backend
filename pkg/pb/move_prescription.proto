@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message MovePrescription {
+    string id = 1;
+    string userid = 2;
+}
+
+service MovePrescriptionManager {
+    rpc CreateMovePrescription(CreateMovePrescriptionRequest) returns (MovePrescription) {}
+    rpc GetMovePrescription(GetMovePrescriptionRequest) returns (MovePrescription) {}
+    rpc UpdateMovePrescription(UpdateMovePrescriptionRequest) returns (MovePrescription) {}
+    rpc DeleteMovePrescription(DeleteMovePrescriptionRequest) returns (MovePrescription) {}
+    rpc GetMovePrescriptions(GetMovePrescriptionsRequest) returns (GetMovePrescriptionsReply) {}
+}
+
+message CreateMovePrescriptionRequest {
+    MovePrescription data = 1;
+}
+
+message GetMovePrescriptionRequest {
+    string id = 1;
+}
+
+message UpdateMovePrescriptionRequest {
+    string id = 1;
+    MovePrescription data = 2;
+}
+
+message DeleteMovePrescriptionRequest {
+    string id = 1;
+}
+
+message GetMovePrescriptionsRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetMovePrescriptionsReply {
+    int64 total_count = 1;
+    repeated MovePrescription items = 2;
+}

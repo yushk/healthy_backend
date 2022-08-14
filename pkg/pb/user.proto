@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message User {
+    string id = 1;
+    string name = 2;
+    string ps = 3;
+    string role = 4;
+    string email = 5;
+    string phone = 6;
+}
+
+service UserManager {
+    rpc CreateUser(CreateUserRequest) returns (User) {}
+    rpc Login(LoginRequest) returns (LoginReply) {}
+    rpc Authenticate(AuthenticateRequest) returns (AuthenticateReply) {}
+    rpc GetUser(GetUserRequest) returns (User) {}
+    rpc UpdateUser(UpdateUserRequest) returns (User) {}
+    rpc DeleteUser(DeleteUserRequest) returns (User) {}
+    rpc ModifyUserPassword(ModifyUserPasswordRequest) returns (ModifyUserPasswordReply) {}
+    rpc GetUsers(GetUsersRequest) returns (GetUsersReply) {}
+}
+
+message CreateUserRequest {
+    User user = 1;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginReply {
+    map<string, string> token = 1;
+    string user_id = 2;
+}
+
+message AuthenticateRequest {
+    string token =1;
+}
+
+message AuthenticateReply {
+    string id = 1;
+    string name = 2;
+    string role = 3;
+    string issuer = 4;
+}
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    User user = 2;
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message ModifyUserPasswordRequest {
+    string username = 1;
+    string old_pwd = 2;
+    string new_pwd = 3;
+}
+
+message ModifyUserPasswordReply {
+    string username = 1;
+}
+
+message GetUsersRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetUsersReply {
+    int64 total_count = 1;
+    repeated User items = 2;
+}

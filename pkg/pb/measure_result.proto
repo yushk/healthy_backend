@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message MeasureResult {
+    string id = 1;
+    string userid = 2;
+}
+
+service MeasureResultManager {
+    rpc CreateMeasureResult(CreateMeasureResultRequest) returns (MeasureResult) {}
+    rpc GetMeasureResult(GetMeasureResultRequest) returns (MeasureResult) {}
+    rpc UpdateMeasureResult(UpdateMeasureResultRequest) returns (MeasureResult) {}
+    rpc DeleteMeasureResult(DeleteMeasureResultRequest) returns (MeasureResult) {}
+    rpc GetMeasureResults(GetMeasureResultsRequest) returns (GetMeasureResultsReply) {}
+}
+
+message CreateMeasureResultRequest {
+    MeasureResult data = 1;
+}
+
+message GetMeasureResultRequest {
+    string id = 1;
+}
+
+message UpdateMeasureResultRequest {
+    string id = 1;
+    MeasureResult data = 2;
+}
+
+message DeleteMeasureResultRequest {
+    string id = 1;
+}
+
+message GetMeasureResultsRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetMeasureResultsReply {
+    int64 total_count = 1;
+    repeated MeasureResult items = 2;
+}

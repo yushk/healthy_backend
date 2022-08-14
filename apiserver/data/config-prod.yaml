@@ -1,0 +1,4 @@
+manager:
+  service:
+    host: localhost
+    port: 30031

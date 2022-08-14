@@ -1,0 +1,6 @@
+FROM alpine
+LABEL MAINTAINER="kaisawind <wind.kaisa@gmail.com>"
+
+COPY manager/bin/ /healthy/
+
+CMD ["/healthy/manager"]

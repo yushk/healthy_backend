@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message MoveData {
+    string id = 1;
+    string userid = 2;
+}
+
+service MoveDataManager {
+    rpc CreateMoveData(CreateMoveDataRequest) returns (MoveData) {}
+    rpc GetMoveData(GetMoveDataRequest) returns (MoveData) {}
+    rpc UpdateMoveData(UpdateMoveDataRequest) returns (MoveData) {}
+    rpc DeleteMoveData(DeleteMoveDataRequest) returns (MoveData) {}
+    rpc GetMoveDatas(GetMoveDatasRequest) returns (GetMoveDatasReply) {}
+}
+
+message CreateMoveDataRequest {
+    MoveData data = 1;
+}
+
+message GetMoveDataRequest {
+    string id = 1;
+}
+
+message UpdateMoveDataRequest {
+    string id = 1;
+    MoveData data = 2;
+}
+
+message DeleteMoveDataRequest {
+    string id = 1;
+}
+
+message GetMoveDatasRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetMoveDatasReply {
+    int64 total_count = 1;
+    repeated MoveData items = 2;
+}

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "apiserver"
+		},
+		{
+			"path": "manager"
+		},
+		{
+			"path": "pkg"
+		}
+	],
+	"settings": {}
+}

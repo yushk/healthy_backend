@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message WorkSubmit {
+    string id = 1;
+    string studentid = 2;
+    string taskid = 3;
+    string content = 4;
+}
+
+service WorkSubmitManager {
+    rpc CreateWorkSubmit(CreateWorkSubmitRequest) returns (WorkSubmit) {}
+    rpc GetWorkSubmit(GetWorkSubmitRequest) returns (WorkSubmit) {}
+    rpc UpdateWorkSubmit(UpdateWorkSubmitRequest) returns (WorkSubmit) {}
+    rpc DeleteWorkSubmit(DeleteWorkSubmitRequest) returns (WorkSubmit) {}
+    rpc GetWorkSubmits(GetWorkSubmitsRequest) returns (GetWorkSubmitsReply) {}
+}
+
+message CreateWorkSubmitRequest {
+    WorkSubmit data = 1;
+}
+
+message GetWorkSubmitRequest {
+    string id = 1;
+}
+
+message UpdateWorkSubmitRequest {
+    string id = 1;
+    WorkSubmit data = 2;
+}
+
+message DeleteWorkSubmitRequest {
+    string id = 1;
+}
+
+message GetWorkSubmitsRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetWorkSubmitsReply {
+    int64 total_count = 1;
+    repeated WorkSubmit items = 2;
+}

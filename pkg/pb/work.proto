@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
+
+message Work {
+    string id = 1;
+    string creater = 2;
+    string receive = 3;
+    string content = 4;
+    string answer = 5;
+}
+
+service WorkManager {
+    rpc CreateWork(CreateWorkRequest) returns (Work) {}
+    rpc GetWork(GetWorkRequest) returns (Work) {}
+    rpc UpdateWork(UpdateWorkRequest) returns (Work) {}
+    rpc DeleteWork(DeleteWorkRequest) returns (Work) {}
+    rpc GetWorks(GetWorksRequest) returns (GetWorksReply) {}
+}
+
+message CreateWorkRequest {
+    Work data = 1;
+}
+
+message GetWorkRequest {
+    string id = 1;
+}
+
+message UpdateWorkRequest {
+    string id = 1;
+    Work data = 2;
+}
+
+message DeleteWorkRequest {
+    string id = 1;
+}
+
+message GetWorksRequest {
+    string query = 1;
+    int64 skip = 2;
+    int64 limit = 3;
+}
+
+message GetWorksReply {
+    int64 total_count = 1;
+    repeated Work items = 2;
+}

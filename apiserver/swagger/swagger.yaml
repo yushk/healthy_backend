@@ -1,0 +1,1731 @@
+swagger: '2.0'
+info:
+  description: 体制检测系统API
+  version: 0.0.1
+  title: 体制检测系统
+host: localhost:8080
+basePath: /
+tags:
+  - name: oauth
+    description: 认证管理
+  - name: user
+    description: 用户管理
+  - name: monitor
+    description: 数据管理
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  BasicAuth:
+    type: basic
+  OAuth2:
+    type: oauth2
+    flow: password
+    tokenUrl: http://localhost:8080/v1/oauth/token
+    scopes:
+      user: 普通用户
+      admin: 管理员
+      root: 超级管理员
+security:
+  - OAuth2:
+      - user
+      - admin
+      - root
+
+paths:
+  /v1/oauth/token:
+    post:
+      tags:
+        - oauth
+      summary: 权限认证
+      description: 权限认证
+      operationId: Token
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: username
+          in: formData
+          description: 用户名
+          type: string
+          required: true
+        - name: password
+          in: formData
+          description: 密码
+          type: string
+          required: true
+        - name: grant_type
+          in: formData
+          description: 认证类型
+          type: string
+          required: true
+          default: password
+        - name: scope
+          in: formData
+          description: 参数
+          type: array
+          items:
+            type: string
+      responses:
+        200:
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Token'
+      security: []
+  /v1/login:
+    post:
+      tags:
+        - user
+      summary: 用户登陆
+      description: 用户登陆
+      operationId: Login
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: username
+          in: formData
+          description: 用户名
+          type: string
+          required: true
+        - name: password
+          in: formData
+          description: 密码
+          type: string
+          required: true
+      responses:
+        200:
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Token'
+      security: []
+  /v1/logout:
+    post:
+      tags:
+        - user
+      summary: 用户登出
+      description: 用户登出
+      operationId: Logout
+      responses:
+        200:
+          description: A successful response.
+      security: []
+  /v1/user/{id}:
+    get:
+      tags:
+        - user
+      summary: 获取用户信息
+      description: 获取单个用户的详细信息
+      operationId: GetUser
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 用户ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/User'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - user
+      summary: 编辑用户
+      description: 编辑单个用户信息
+      operationId: UpdateUser
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 用户ID
+        - in: body
+          name: body
+          description: 用户参数
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/User'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - user
+      summary: 删除用户
+      description: 删除单个用户
+      operationId: DeleteUser
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 用户ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/User'
+      security:
+        - OAuth2: [root, admin]
+  /v1/user:
+    post:
+      tags:
+        - user
+      summary: 创建用户
+      description: 创建用户
+      operationId: CreateUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 用户信息
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/User'
+      security:
+        - OAuth2: [root, admin]
+    patch:
+      tags:
+        - user
+      summary: 修改密码
+      description: 修改密码
+      operationId: ModifyUserPassword
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+        - name: old_password
+          in: formData
+          description: 原始密码
+          type: string
+          required: true
+        - name: new_password
+          in: formData
+          description: 新密码
+          type: string
+          required: true
+      responses:
+        '200':
+          description: ok
+      security:
+        - OAuth2: [root, admin, user]
+  /v1/users:
+    get:
+      tags:
+        - user
+      summary: 获取用户列表
+      description: 获取用户列表
+      operationId: GetUsers
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Users'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/personal/{id}:
+    get:
+      tags:
+        - user
+      summary: 获取个人基础信息
+      description: 获取个人基础信息
+      operationId: GetPersonal
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 个人基础信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Personal'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - user
+      summary: 编辑个人基础信息
+      description: 编辑个人基础信息
+      operationId: UpdatePersonal
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 个人基础信息ID
+        - in: body
+          name: body
+          description: 个人基础信息参数
+          schema:
+            $ref: '#/definitions/Personal'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Personal'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - user
+      summary: 删除个人基础信息
+      description: 删除个人基础信息
+      operationId: DeletePersonal
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 个人基础信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Personal'
+      security:
+        - OAuth2: [root, admin]
+  /v1/personal:
+    post:
+      tags:
+        - user
+      summary: 创建个人基础信息
+      description: 创建个人基础信息
+      operationId: CreatePersonal
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 个人基础信息
+          required: true
+          schema:
+            $ref: '#/definitions/Personal'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Personal'
+      security:
+        - OAuth2: [root, admin]
+  /v1/personals:
+    get:
+      tags:
+        - user
+      summary: 获取个人基础信息列表
+      description: 获取个人基础信息列表
+      operationId: GetPersonals
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Personals'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/caseData/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取病例数据信息
+      description: 获取病例数据信息
+      operationId: GetCaseData
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 病例数据信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/CaseData'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑病例数据信息
+      description: 编辑病例数据信息
+      operationId: UpdateCaseData
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 病例数据信息ID
+        - in: body
+          name: body
+          description: 病例数据信息参数
+          schema:
+            $ref: '#/definitions/CaseData'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/CaseData'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除病例数据信息
+      description: 删除病例数据信息
+      operationId: DeleteCaseData
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 病例数据信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/CaseData'
+      security:
+        - OAuth2: [root, admin]
+  /v1/caseData:
+    post:
+      tags:
+        - monitor
+      summary: 创建病例数据信息
+      description: 创建病例数据信息
+      operationId: CreateCaseData
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 病例数据信息
+          required: true
+          schema:
+            $ref: '#/definitions/CaseData'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/CaseData'
+      security:
+        - OAuth2: [root, admin]
+  /v1/caseDatas:
+    get:
+      tags:
+        - monitor
+      summary: 获取病例数据信息列表
+      description: 获取病例数据信息列表
+      operationId: GetCaseDatas
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/CaseDatas'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/class/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取班级信息
+      description: 获取班级信息
+      operationId: GetClass
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 班级信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Class'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑班级信息
+      description: 编辑班级信息
+      operationId: UpdateClass
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 班级信息ID
+        - in: body
+          name: body
+          description: 班级信息参数
+          schema:
+            $ref: '#/definitions/Class'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Class'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除班级信息
+      description: 删除班级信息
+      operationId: DeleteClass
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 班级信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Class'
+      security:
+        - OAuth2: [root, admin]
+  /v1/class:
+    post:
+      tags:
+        - monitor
+      summary: 创建班级信息
+      description: 创建班级信息
+      operationId: CreateClass
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 班级信息
+          required: true
+          schema:
+            $ref: '#/definitions/Class'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Class'
+      security:
+        - OAuth2: [root, admin]
+  /v1/classes:
+    get:
+      tags:
+        - monitor
+      summary: 获取班级信息列表
+      description: 获取班级信息列表
+      operationId: GetClasses
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Classes'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/measureDetail/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取测评数据明细信息
+      description: 获取测评数据明细信息
+      operationId: GetMeasureDetail
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 测评数据明细信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MeasureDetail'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑测评数据明细信息
+      description: 编辑测评数据明细信息
+      operationId: UpdateMeasureDetail
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 测评数据明细信息ID
+        - in: body
+          name: body
+          description: 测评数据明细信息参数
+          schema:
+            $ref: '#/definitions/MeasureDetail'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MeasureDetail'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除测评数据明细信息
+      description: 删除测评数据明细信息
+      operationId: DeleteMeasureDetail
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 测评数据明细信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MeasureDetail'
+      security:
+        - OAuth2: [root, admin]
+  /v1/measureDetail:
+    post:
+      tags:
+        - monitor
+      summary: 创建测评数据明细信息
+      description: 创建测评数据明细信息
+      operationId: CreateMeasureDetail
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 测评数据明细信息
+          required: true
+          schema:
+            $ref: '#/definitions/MeasureDetail'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MeasureDetail'
+      security:
+        - OAuth2: [root, admin]
+  /v1/measureDetails:
+    get:
+      tags:
+        - monitor
+      summary: 获取测评数据明细信息列表
+      description: 获取测评数据明细信息列表
+      operationId: GetMeasureDetails
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MeasureDetails'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/measureResult/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取测评数据结果分析信息
+      description: 获取测评数据结果分析信息
+      operationId: GetMeasureResult
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 测评数据结果分析信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MeasureResult'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑测评数据结果分析信息
+      description: 编辑测评数据结果分析信息
+      operationId: UpdateMeasureResult
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 测评数据结果分析信息ID
+        - in: body
+          name: body
+          description: 测评数据结果分析信息参数
+          schema:
+            $ref: '#/definitions/MeasureResult'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MeasureResult'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除测评数据结果分析信息
+      description: 删除测评数据结果分析信息
+      operationId: DeleteMeasureResult
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 测评数据结果分析信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MeasureResult'
+      security:
+        - OAuth2: [root, admin]
+  /v1/measureResult:
+    post:
+      tags:
+        - monitor
+      summary: 创建测评数据结果分析信息
+      description: 创建测评数据结果分析信息
+      operationId: CreateMeasureResult
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 测评数据结果分析信息
+          required: true
+          schema:
+            $ref: '#/definitions/MeasureResult'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MeasureResult'
+      security:
+        - OAuth2: [root, admin]
+  /v1/measureResults:
+    get:
+      tags:
+        - monitor
+      summary: 获取测评数据结果分析信息列表
+      description: 获取测评数据结果分析信息列表
+      operationId: GetMeasureResults
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MeasureResults'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/moveData/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取运动数据信息
+      description: 获取运动数据信息
+      operationId: GetMoveData
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 运动数据信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MoveData'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑运动数据信息
+      description: 编辑运动数据信息
+      operationId: UpdateMoveData
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 运动数据信息ID
+        - in: body
+          name: body
+          description: 运动数据信息参数
+          schema:
+            $ref: '#/definitions/MoveData'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MoveData'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除运动数据信息
+      description: 删除运动数据信息
+      operationId: DeleteMoveData
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 运动数据信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MoveData'
+      security:
+        - OAuth2: [root, admin]
+  /v1/moveData:
+    post:
+      tags:
+        - monitor
+      summary: 创建运动数据信息
+      description: 创建运动数据信息
+      operationId: CreateMoveData
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 运动数据信息
+          required: true
+          schema:
+            $ref: '#/definitions/MoveData'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MoveData'
+      security:
+        - OAuth2: [root, admin]
+  /v1/moveDatas:
+    get:
+      tags:
+        - monitor
+      summary: 获取运动数据信息列表
+      description: 获取运动数据信息列表
+      operationId: GetMoveDatas
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MoveDatas'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/movePrescription/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取运动处方信息
+      description: 获取运动处方信息
+      operationId: GetMovePrescription
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 运动处方信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MovePrescription'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑运动处方信息
+      description: 编辑运动处方信息
+      operationId: UpdateMovePrescription
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 运动处方信息ID
+        - in: body
+          name: body
+          description: 运动处方信息参数
+          schema:
+            $ref: '#/definitions/MovePrescription'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MovePrescription'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除运动处方信息
+      description: 删除运动处方信息
+      operationId: DeleteMovePrescription
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 运动处方信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/MovePrescription'
+      security:
+        - OAuth2: [root, admin]
+  /v1/movePrescription:
+    post:
+      tags:
+        - monitor
+      summary: 创建运动处方信息
+      description: 创建运动处方信息
+      operationId: CreateMovePrescription
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 运动处方信息
+          required: true
+          schema:
+            $ref: '#/definitions/MovePrescription'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MovePrescription'
+      security:
+        - OAuth2: [root, admin]
+  /v1/movePrescriptions:
+    get:
+      tags:
+        - monitor
+      summary: 获取运动处方信息列表
+      description: 获取运动处方信息列表
+      operationId: GetMovePrescriptions
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/MovePrescriptions'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/work/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取作业信息
+      description: 获取作业信息
+      operationId: GetWork
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 作业信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Work'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑作业信息
+      description: 编辑作业信息
+      operationId: UpdateWork
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 作业信息ID
+        - in: body
+          name: body
+          description: 作业信息参数
+          schema:
+            $ref: '#/definitions/Work'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Work'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除作业信息
+      description: 删除作业信息
+      operationId: DeleteWork
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 作业信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/Work'
+      security:
+        - OAuth2: [root, admin]
+  /v1/work:
+    post:
+      tags:
+        - monitor
+      summary: 创建作业信息
+      description: 创建作业信息
+      operationId: CreateWork
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 作业信息
+          required: true
+          schema:
+            $ref: '#/definitions/Work'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Work'
+      security:
+        - OAuth2: [root, admin]
+  /v1/works:
+    get:
+      tags:
+        - monitor
+      summary: 获取作业信息列表
+      description: 获取作业信息列表
+      operationId: GetWorks
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Works'
+      security:
+        - OAuth2: [root, admin]
+
+  /v1/workSubmit/{id}:
+    get:
+      tags:
+        - monitor
+      summary: 获取作业提交信息
+      description: 获取作业提交信息
+      operationId: GetWorkSubmit
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 作业提交信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/WorkSubmit'
+      security:
+        - OAuth2: [root, admin]
+    put:
+      tags:
+        - monitor
+      summary: 编辑作业提交信息
+      description: 编辑作业提交信息
+      operationId: UpdateWorkSubmit
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 作业提交信息ID
+        - in: body
+          name: body
+          description: 作业提交信息参数
+          schema:
+            $ref: '#/definitions/WorkSubmit'
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/WorkSubmit'
+      security:
+        - OAuth2: [root, admin]
+    delete:
+      tags:
+        - monitor
+      summary: 删除作业提交信息
+      description: 删除作业提交信息
+      operationId: DeleteWorkSubmit
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 作业提交信息ID
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/WorkSubmit'
+      security:
+        - OAuth2: [root, admin]
+  /v1/workSubmit:
+    post:
+      tags:
+        - monitor
+      summary: 创建作业提交信息
+      description: 创建作业提交信息
+      operationId: CreateWorkSubmit
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 作业提交信息
+          required: true
+          schema:
+            $ref: '#/definitions/WorkSubmit'
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/WorkSubmit'
+      security:
+        - OAuth2: [root, admin]
+  /v1/workSubmits:
+    get:
+      tags:
+        - monitor
+      summary: 获取作业提交信息列表
+      description: 获取作业提交信息列表
+      operationId: GetWorkSubmits
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          description: 翻过条目数
+          type: integer
+          format: int64
+        - in: query
+          name: limit
+          description: 限制条目数
+          type: integer
+          format: int64
+        - in: query
+          name: query
+          description: 筛选条件
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/WorkSubmits'
+      security:
+        - OAuth2: [root, admin]
+
+definitions:
+  Token:
+    type: object
+    properties:
+      access_token:
+        type: string
+        description: jwt token
+        x-omitempty: false
+      token_type:
+        type: string
+        description: token的类型
+        default: "Bearer"
+        x-omitempty: false
+      expires_in:
+        type: string
+        description: token过期时间(秒)
+        x-omitempty: false
+      expires_at:
+        type: string
+        description: token过期时间(timestamp)
+        x-omitempty: false
+  Principal:
+    type: object
+    description: OAuth2鉴权信息
+    properties:
+      id:
+        description: 用户ID(唯一)
+        type: string
+        x-omitempty: false
+      name:
+        description: 用户名(唯一)
+        type: string
+        x-omitempty: false
+      role:
+        type: string
+        description: 当前角色
+        x-omitempty: false
+  Personals:
+    type: object
+    description: 个人基础信息列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有个人基础信息总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 个人基础信息列表
+        items:
+          $ref: '#/definitions/Personal'
+  Personal:
+    type: object
+    description: 个人基础信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      name:
+        type: string
+        x-omitempty: false
+        description: 姓名
+      userid:
+        type: string
+        x-omitempty: false
+        description: 用户id
+      gender:
+        type: string
+        x-omitempty: false
+        description: 性别
+      birth:
+        type: string
+        x-omitempty: false
+        description: 出生年月
+  Users:
+    type: object
+    description: 用户列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有用户总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 用户列表
+        items:
+          $ref: '#/definitions/User'
+  User:
+    type: object
+    description: 用户信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      name:
+        type: string
+        x-omitempty: false
+        description: 用户名
+      ps:
+        type: string
+        x-omitempty: false
+        description: 用户密码
+      role:
+        type: string
+        x-omitempty: false
+        description: 用户角色
+        enum:
+          - student
+          - teacher
+          - data_entry
+      phone:
+        type: string
+        x-omitempty: false
+        description: 电话号码
+      email:
+        type: string
+        x-omitempty: false
+        description: 邮箱
+  CaseDatas:
+    type: object
+    description: 病例数据列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有病例数据总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 病例数据列表
+        items:
+          $ref: '#/definitions/CaseData'
+  CaseData:
+    type: object
+    description: 病例数据信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      userid:
+        type: string
+        x-omitempty: false
+        description: 用户id
+  Classes:
+    type: object
+    description: 班级列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有班级总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 班级列表
+        items:
+          $ref: '#/definitions/Class'
+  Class:
+    type: object
+    description: 班级信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      owner:
+        type: string
+        x-omitempty: false
+        description: 班级内老师 用于发布作业权限
+      teachers:
+        type: string
+        x-omitempty: false
+        description: 班级内老师 用于发布作业权限
+      students:
+        type: string
+        x-omitempty: false
+        description: 班级内学生 用于查看作业权限
+  MeasureDetails:
+    type: object
+    description: 测评数据明细列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有测评数据明细总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 测评数据明细列表
+        items:
+          $ref: '#/definitions/MeasureDetail'
+  MeasureDetail:
+    type: object
+    description: 测评数据明细信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      userid:
+        type: string
+        x-omitempty: false
+        description: 用户id
+  MeasureResults:
+    type: object
+    description: 测评数据结果分析列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有测评数据结果分析总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 测评数据结果分析列表
+        items:
+          $ref: '#/definitions/MeasureResult'
+  MeasureResult:
+    type: object
+    description: 测评数据结果分析信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      userid:
+        type: string
+        x-omitempty: false
+        description: 用户id
+  MoveDatas:
+    type: object
+    description: 运动数据列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有运动数据总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 运动数据列表
+        items:
+          $ref: '#/definitions/MoveData'
+  MoveData:
+    type: object
+    description: 运动数据信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      userid:
+        type: string
+        x-omitempty: false
+        description: 用户id
+  MovePrescriptions:
+    type: object
+    description: 运动处方列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有运动处方总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 运动处方列表
+        items:
+          $ref: '#/definitions/MovePrescription'
+  MovePrescription:
+    type: object
+    description: 运动处方信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      userid:
+        type: string
+        x-omitempty: false
+        description: 用户id
+  Works:
+    type: object
+    description: 作业列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有作业总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 作业列表
+        items:
+          $ref: '#/definitions/Work'
+  Work:
+    type: object
+    description: 作业提交信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      creater:
+        type: string
+        x-omitempty: false
+        description: 作业对象
+      receive:
+        type: string
+        x-omitempty: false
+        description: 接收对象
+      content:
+        type: string
+        x-omitempty: false
+        description: 作业内容
+      answer:
+        type: string
+        x-omitempty: false
+        description: 答案
+  WorkSubmits:
+    type: object
+    description: 作业提交列表
+    properties:
+      total_count:
+        type: integer
+        format: int64
+        x-omitempty: false
+        description: 所有作业提交总数
+      items:
+        type: array
+        x-omitempty: false
+        description: 作业提交列表
+        items:
+          $ref: '#/definitions/WorkSubmit'
+  WorkSubmit:
+    type: object
+    description: 作业提交信息
+    properties:
+      id:
+        type: string
+        x-omitempty: false
+        readOnly: true
+      studentid:
+        type: string
+        x-omitempty: false
+        description: 作业id
+      taskid:
+        type: string
+        x-omitempty: false
+        description: 作业内容
+      content:
+        type: string
+        x-omitempty: false
+        description: 学生提交上来的数据
+externalDocs:
+  description: Find out more about Swagger
+  url: 'https://github.com/kaisawind/iotx'
