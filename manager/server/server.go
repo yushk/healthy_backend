@@ -5,13 +5,13 @@ import (
 	"net"
 	"sync"
 
-	config2 "gitee.com/healthy/backend/pkg/config"
+	config2 "github.com/yushk/healthy_backend/pkg/config"
 
-	"gitee.com/healthy/backend/manager/internal/db"
-	"gitee.com/healthy/backend/manager/server/helper"
-	"gitee.com/healthy/backend/pkg/pb"
 	"github.com/robfig/cron"
 	"github.com/sirupsen/logrus"
+	"github.com/yushk/healthy_backend/manager/internal/db"
+	"github.com/yushk/healthy_backend/manager/server/helper"
+	"github.com/yushk/healthy_backend/pkg/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

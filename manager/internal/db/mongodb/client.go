@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	config2 "gitee.com/healthy/backend/pkg/config"
+	config2 "github.com/yushk/healthy_backend/pkg/config"
 
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/mongo"

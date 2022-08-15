@@ -1,4 +1,4 @@
-module gitee.com/healthy/backend/pkg
+module github.com/yushk/healthy_backend/pkg
 
 go 1.17
 

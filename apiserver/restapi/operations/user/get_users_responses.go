@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-openapi/runtime"
 
-	v1 "gitee.com/healthy/backend/apiserver/v1"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 // GetUsersOKCode is the HTTP code returned for type GetUsersOK

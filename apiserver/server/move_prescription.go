@@ -1,12 +1,12 @@
 package server
 
 import (
-	"gitee.com/healthy/backend/apiserver/restapi/operations/monitor"
-	"gitee.com/healthy/backend/apiserver/server/convert"
-	v1 "gitee.com/healthy/backend/apiserver/v1"
-	"gitee.com/healthy/backend/pkg/pb"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/sirupsen/logrus"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/monitor"
+	"github.com/yushk/healthy_backend/apiserver/server/convert"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
+	"github.com/yushk/healthy_backend/pkg/pb"
 )
 
 func CreateMovePrescription(params monitor.CreateMovePrescriptionParams, principal *v1.Principal) middleware.Responder {

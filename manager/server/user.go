@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"gitee.com/healthy/backend/manager/server/helper"
-	"gitee.com/healthy/backend/pkg/pb"
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/yushk/healthy_backend/manager/server/helper"
+	"github.com/yushk/healthy_backend/pkg/pb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

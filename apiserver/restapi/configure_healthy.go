@@ -10,13 +10,13 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 
-	mws "gitee.com/healthy/backend/apiserver/middlewares"
-	"gitee.com/healthy/backend/apiserver/restapi/operations"
-	"gitee.com/healthy/backend/apiserver/restapi/operations/monitor"
-	"gitee.com/healthy/backend/apiserver/restapi/operations/oauth"
-	"gitee.com/healthy/backend/apiserver/restapi/operations/user"
-	"gitee.com/healthy/backend/apiserver/server"
-	v1 "gitee.com/healthy/backend/apiserver/v1"
+	mws "github.com/yushk/healthy_backend/apiserver/middlewares"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/monitor"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/oauth"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/user"
+	"github.com/yushk/healthy_backend/apiserver/server"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 //go:generate swagger generate server --target ../../apiserver --name Healthy --spec ../swagger/swagger.yaml --model-package v1 --principal v1.Principal

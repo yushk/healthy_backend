@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"gitee.com/healthy/backend/manager/internal/db/mongodb"
-	"gitee.com/healthy/backend/pkg/pb"
+	"github.com/yushk/healthy_backend/manager/internal/db/mongodb"
+	"github.com/yushk/healthy_backend/pkg/pb"
 )
 
 // Type 数据库类型

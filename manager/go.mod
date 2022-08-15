@@ -1,13 +1,13 @@
-module gitee.com/healthy/backend/manager
+module github.com/yushk/healthy_backend/manager
 
 go 1.17
 
 require (
-	gitee.com/healthy/backend/pkg v0.2.3
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/robfig/cron v1.2.0
 	github.com/rs/xid v1.3.0
 	github.com/sirupsen/logrus v1.8.1
+	github.com/yushk/healthy_backend/pkg v0.2.3
 	go.mongodb.org/mongo-driver v1.8.1
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
 	google.golang.org/grpc v1.43.0
@@ -47,4 +47,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace gitee.com/healthy/backend/pkg => ../pkg
+replace github.com/yushk/healthy_backend/pkg => ../pkg

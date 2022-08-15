@@ -1,9 +1,8 @@
-module gitee.com/healthy/backend/apiserver
+module github.com/yushk/healthy_backend/apiserver
 
 go 1.17
 
 require (
-	gitee.com/healthy/backend/pkg v0.2.3
 	github.com/carbocation/interpose v0.0.0-20161206215253-723534742ba3
 	github.com/didip/tollbooth v4.0.2+incompatible
 	github.com/dre1080/recovr v1.0.3
@@ -14,10 +13,10 @@ require (
 	github.com/go-openapi/strfmt v0.21.1
 	github.com/go-openapi/swag v0.19.15
 	github.com/go-openapi/validate v0.20.3
-	github.com/gorilla/websocket v1.4.0
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/sirupsen/logrus v1.8.1
+	github.com/yushk/healthy_backend/pkg v0.2.3
 	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f
 	google.golang.org/grpc v1.43.0
 )
@@ -77,4 +76,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace gitee.com/healthy/backend/pkg => ../pkg
+replace github.com/yushk/healthy_backend/pkg => ../pkg

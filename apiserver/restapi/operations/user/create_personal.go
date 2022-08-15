@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-openapi/runtime/middleware"
 
-	v1 "gitee.com/healthy/backend/apiserver/v1"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 // CreatePersonalHandlerFunc turns a function with the right signature into a create personal handler

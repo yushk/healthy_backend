@@ -1,8 +1,8 @@
 package server
 
 import (
-	"gitee.com/healthy/backend/pkg/pb"
 	"github.com/sirupsen/logrus"
+	"github.com/yushk/healthy_backend/pkg/pb"
 )
 
 // 客户端列表

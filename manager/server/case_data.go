@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	"gitee.com/healthy/backend/pkg/pb"
+	"github.com/yushk/healthy_backend/pkg/pb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

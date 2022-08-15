@@ -8,8 +8,8 @@ package monitor
 import (
 	"net/http"
 
-	v1 "gitee.com/healthy/backend/apiserver/v1"
 	"github.com/go-openapi/runtime"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 // GetMeasureDetailOKCode is the HTTP code returned for type GetMeasureDetailOK

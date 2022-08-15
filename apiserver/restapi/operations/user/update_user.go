@@ -8,8 +8,8 @@ package user
 import (
 	"net/http"
 
-	v1 "gitee.com/healthy/backend/apiserver/v1"
 	"github.com/go-openapi/runtime/middleware"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 // UpdateUserHandlerFunc turns a function with the right signature into a update user handler

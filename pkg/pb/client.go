@@ -3,8 +3,8 @@ package pb
 import (
 	"net"
 
-	"gitee.com/healthy/backend/pkg/config"
 	"github.com/sirupsen/logrus"
+	"github.com/yushk/healthy_backend/pkg/config"
 	"google.golang.org/grpc"
 )
 

@@ -1,12 +1,12 @@
 package server
 
 import (
-	"gitee.com/healthy/backend/apiserver/restapi/operations/user"
-	"gitee.com/healthy/backend/apiserver/server/convert"
-	v1 "gitee.com/healthy/backend/apiserver/v1"
-	"gitee.com/healthy/backend/pkg/pb"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/sirupsen/logrus"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/user"
+	"github.com/yushk/healthy_backend/apiserver/server/convert"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
+	"github.com/yushk/healthy_backend/pkg/pb"
 )
 
 func CreateUser(params user.CreateUserParams, principal *v1.Principal) middleware.Responder {

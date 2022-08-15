@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 
-	"gitee.com/healthy/backend/manager/server"
 	"github.com/sirupsen/logrus"
+	"github.com/yushk/healthy_backend/manager/server"
 )
 
 // inject by go build

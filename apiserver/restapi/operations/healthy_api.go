@@ -19,10 +19,10 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"gitee.com/healthy/backend/apiserver/restapi/operations/monitor"
-	"gitee.com/healthy/backend/apiserver/restapi/operations/oauth"
-	"gitee.com/healthy/backend/apiserver/restapi/operations/user"
-	v1 "gitee.com/healthy/backend/apiserver/v1"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/monitor"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/oauth"
+	"github.com/yushk/healthy_backend/apiserver/restapi/operations/user"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 // NewHealthyAPI creates a new Healthy instance

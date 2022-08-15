@@ -1,8 +1,8 @@
 package convert
 
 import (
-	v1 "gitee.com/healthy/backend/apiserver/v1"
-	"gitee.com/healthy/backend/pkg/pb"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
+	"github.com/yushk/healthy_backend/pkg/pb"
 )
 
 func PersonalPb2V1(pbPersonal *pb.Personal) (v1Personal *v1.Personal) {

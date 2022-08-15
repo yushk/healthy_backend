@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/validate"
 
-	v1 "gitee.com/healthy/backend/apiserver/v1"
+	v1 "github.com/yushk/healthy_backend/apiserver/v1"
 )
 
 // NewCreatePersonalParams creates a new CreatePersonalParams object
