@@ -1,10 +1,9 @@
 
 SERVICES = apiserver manager
 # Docker informations
-# docker push docker.pkg.gitee.com/cs-pvpms/backend/SERVICE_NAME:VERSION
-# DOCKER_REPO := 192.168.1.118:5000/
-DOCKER_REPO := 39.100.119.145:5000/
-DOCKER_NAMESPACE := pvpms
+# docker push docker.pkg.gitee.com/healthy_backend
+DOCKER_REPO := 192.168.1.118:5000/
+DOCKER_NAMESPACE := healthy
 DOCKER_TAG       := latest
 
 ##### =====> build <===== #####
