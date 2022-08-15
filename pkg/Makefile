@@ -5,7 +5,7 @@ build:
 tidy:
 	go mod tidy
 
-gen: prt client
+gen: client prt
 	@echo pkg gen ok
 
 client: clean
@@ -19,3 +19,5 @@ prt:
 		sed -i -E 's/json:("[^"]+),omitempty"/json:\1" bson:\1"/' pb/*.pb.go
 
 .PHONY: clean
+clean:
+	rm -rf ./pb/*.pb.go
