@@ -26,13 +26,13 @@ securityDefinitions:
     flow: password
     tokenUrl: http://localhost:8080/v1/oauth/token
     scopes:
-      user: 普通用户
-      admin: 管理员
+      student: 学生
+      teacher: 老师
       root: 超级管理员
 security:
   - OAuth2:
-      - user
-      - admin
+      - student
+      - teacher
       - root
 
 paths:
@@ -130,7 +130,7 @@ paths:
           schema:
             $ref: '#/definitions/User'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - user
@@ -154,7 +154,7 @@ paths:
           schema:
             $ref: '#/definitions/User'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - user
@@ -173,8 +173,21 @@ paths:
           schema:
             $ref: '#/definitions/User'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/user:
+    get:
+      tags:
+        - user
+      summary: 获取当前用户信息
+      description: 获取当前用户信息
+      operationId: GetUserInfo
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/User'
+      security:
+        - OAuth2: [root, teacher, student]
     post:
       tags:
         - user
@@ -198,7 +211,7 @@ paths:
           schema:
             $ref: '#/definitions/User'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     patch:
       tags:
         - user
@@ -226,7 +239,7 @@ paths:
         '200':
           description: ok
       security:
-        - OAuth2: [root, admin, user]
+        - OAuth2: [root, teacher, student]
   /v1/users:
     get:
       tags:
@@ -259,7 +272,7 @@ paths:
           schema:
             $ref: '#/definitions/Users'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/personal/{id}:
     get:
@@ -280,7 +293,7 @@ paths:
           schema:
             $ref: '#/definitions/Personal'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - user
@@ -304,7 +317,7 @@ paths:
           schema:
             $ref: '#/definitions/Personal'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - user
@@ -323,7 +336,7 @@ paths:
           schema:
             $ref: '#/definitions/Personal'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/personal:
     post:
       tags:
@@ -348,7 +361,7 @@ paths:
           schema:
             $ref: '#/definitions/Personal'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/personals:
     get:
       tags:
@@ -381,7 +394,7 @@ paths:
           schema:
             $ref: '#/definitions/Personals'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/caseData/{id}:
     get:
@@ -402,7 +415,7 @@ paths:
           schema:
             $ref: '#/definitions/CaseData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -426,7 +439,7 @@ paths:
           schema:
             $ref: '#/definitions/CaseData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -445,7 +458,7 @@ paths:
           schema:
             $ref: '#/definitions/CaseData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/caseData:
     post:
       tags:
@@ -470,7 +483,7 @@ paths:
           schema:
             $ref: '#/definitions/CaseData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/caseDatas:
     get:
       tags:
@@ -503,7 +516,7 @@ paths:
           schema:
             $ref: '#/definitions/CaseDatas'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/class/{id}:
     get:
@@ -524,7 +537,7 @@ paths:
           schema:
             $ref: '#/definitions/Class'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -548,7 +561,7 @@ paths:
           schema:
             $ref: '#/definitions/Class'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -567,7 +580,7 @@ paths:
           schema:
             $ref: '#/definitions/Class'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/class:
     post:
       tags:
@@ -592,7 +605,7 @@ paths:
           schema:
             $ref: '#/definitions/Class'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/classes:
     get:
       tags:
@@ -625,7 +638,7 @@ paths:
           schema:
             $ref: '#/definitions/Classes'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/measureDetail/{id}:
     get:
@@ -646,7 +659,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureDetail'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -670,7 +683,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureDetail'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -689,7 +702,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureDetail'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/measureDetail:
     post:
       tags:
@@ -714,7 +727,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureDetail'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/measureDetails:
     get:
       tags:
@@ -747,7 +760,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureDetails'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/measureResult/{id}:
     get:
@@ -768,7 +781,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureResult'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -792,7 +805,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureResult'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -811,7 +824,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureResult'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/measureResult:
     post:
       tags:
@@ -836,7 +849,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureResult'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/measureResults:
     get:
       tags:
@@ -869,7 +882,7 @@ paths:
           schema:
             $ref: '#/definitions/MeasureResults'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/moveData/{id}:
     get:
@@ -890,7 +903,7 @@ paths:
           schema:
             $ref: '#/definitions/MoveData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -914,7 +927,7 @@ paths:
           schema:
             $ref: '#/definitions/MoveData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -933,7 +946,7 @@ paths:
           schema:
             $ref: '#/definitions/MoveData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/moveData:
     post:
       tags:
@@ -958,7 +971,7 @@ paths:
           schema:
             $ref: '#/definitions/MoveData'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/moveDatas:
     get:
       tags:
@@ -991,7 +1004,7 @@ paths:
           schema:
             $ref: '#/definitions/MoveDatas'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/movePrescription/{id}:
     get:
@@ -1012,7 +1025,7 @@ paths:
           schema:
             $ref: '#/definitions/MovePrescription'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -1036,7 +1049,7 @@ paths:
           schema:
             $ref: '#/definitions/MovePrescription'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -1055,7 +1068,7 @@ paths:
           schema:
             $ref: '#/definitions/MovePrescription'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/movePrescription:
     post:
       tags:
@@ -1080,7 +1093,7 @@ paths:
           schema:
             $ref: '#/definitions/MovePrescription'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/movePrescriptions:
     get:
       tags:
@@ -1113,7 +1126,7 @@ paths:
           schema:
             $ref: '#/definitions/MovePrescriptions'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/work/{id}:
     get:
@@ -1134,7 +1147,7 @@ paths:
           schema:
             $ref: '#/definitions/Work'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -1158,7 +1171,7 @@ paths:
           schema:
             $ref: '#/definitions/Work'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -1177,7 +1190,7 @@ paths:
           schema:
             $ref: '#/definitions/Work'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/work:
     post:
       tags:
@@ -1202,7 +1215,7 @@ paths:
           schema:
             $ref: '#/definitions/Work'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/works:
     get:
       tags:
@@ -1235,7 +1248,7 @@ paths:
           schema:
             $ref: '#/definitions/Works'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
   /v1/workSubmit/{id}:
     get:
@@ -1256,7 +1269,7 @@ paths:
           schema:
             $ref: '#/definitions/WorkSubmit'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     put:
       tags:
         - monitor
@@ -1280,7 +1293,7 @@ paths:
           schema:
             $ref: '#/definitions/WorkSubmit'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
     delete:
       tags:
         - monitor
@@ -1299,7 +1312,7 @@ paths:
           schema:
             $ref: '#/definitions/WorkSubmit'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/workSubmit:
     post:
       tags:
@@ -1324,7 +1337,7 @@ paths:
           schema:
             $ref: '#/definitions/WorkSubmit'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
   /v1/workSubmits:
     get:
       tags:
@@ -1357,7 +1370,7 @@ paths:
           schema:
             $ref: '#/definitions/WorkSubmits'
       security:
-        - OAuth2: [root, admin]
+        - OAuth2: [root, teacher, student]
 
 definitions:
   Token:

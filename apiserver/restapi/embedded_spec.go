@@ -42,7 +42,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -85,7 +86,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -118,7 +120,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -159,7 +162,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -194,7 +198,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -248,7 +253,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -291,7 +297,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -324,7 +331,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -365,7 +373,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -400,7 +409,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -508,7 +518,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -551,7 +562,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -584,7 +596,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -625,7 +638,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -660,7 +674,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -714,7 +729,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -757,7 +773,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -790,7 +807,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -831,7 +849,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -866,7 +885,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -920,7 +940,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -963,7 +984,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -996,7 +1018,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1037,7 +1060,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1072,7 +1096,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1126,7 +1151,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1169,7 +1195,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1202,7 +1229,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1243,7 +1271,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1278,7 +1307,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1387,7 +1417,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1430,7 +1461,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1463,7 +1495,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1504,7 +1537,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1539,7 +1573,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1588,12 +1623,38 @@ func init() {
       }
     },
     "/v1/user": {
+      "get": {
+        "security": [
+          {
+            "OAuth2": [
+              "root",
+              "teacher",
+              "student"
+            ]
+          }
+        ],
+        "description": "获取当前用户信息",
+        "tags": [
+          "user"
+        ],
+        "summary": "获取当前用户信息",
+        "operationId": "GetUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
       "post": {
         "security": [
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1634,8 +1695,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin",
-              "user"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1683,7 +1744,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1716,7 +1778,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1757,7 +1820,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1792,7 +1856,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1846,7 +1911,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1889,7 +1955,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1922,7 +1989,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1963,7 +2031,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -1998,7 +2067,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -2041,7 +2111,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -2074,7 +2145,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -2115,7 +2187,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -2150,7 +2223,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -2204,7 +2278,8 @@ func init() {
           {
             "OAuth2": [
               "root",
-              "admin"
+              "teacher",
+              "student"
             ]
           }
         ],
@@ -2746,17 +2821,17 @@ func init() {
       "flow": "password",
       "tokenUrl": "http://localhost:8080/v1/oauth/token",
       "scopes": {
-        "admin": "管理员",
         "root": "超级管理员",
-        "user": "普通用户"
+        "student": "学生",
+        "teacher": "老师"
       }
     }
   },
   "security": [
     {
       "OAuth2": [
-        "user",
-        "admin",
+        "student",
+        "teacher",
         "root"
       ]
     }
@@ -2804,8 +2879,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -2847,8 +2923,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -2880,8 +2957,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -2921,8 +2999,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -2956,8 +3035,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3010,8 +3090,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3053,8 +3134,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3086,8 +3168,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3127,8 +3210,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3162,8 +3246,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3270,8 +3355,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3313,8 +3399,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3346,8 +3433,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3387,8 +3475,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3422,8 +3511,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3476,8 +3566,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3519,8 +3610,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3552,8 +3644,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3593,8 +3686,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3628,8 +3722,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3682,8 +3777,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3725,8 +3821,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3758,8 +3855,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3799,8 +3897,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3834,8 +3933,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3888,8 +3988,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3931,8 +4032,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -3964,8 +4066,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4005,8 +4108,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4040,8 +4144,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4149,8 +4254,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4192,8 +4298,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4225,8 +4332,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4266,8 +4374,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4301,8 +4410,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4351,12 +4461,38 @@ func init() {
       }
     },
     "/v1/user": {
+      "get": {
+        "security": [
+          {
+            "OAuth2": [
+              "root",
+              "student",
+              "teacher"
+            ]
+          }
+        ],
+        "description": "获取当前用户信息",
+        "tags": [
+          "user"
+        ],
+        "summary": "获取当前用户信息",
+        "operationId": "GetUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
       "post": {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4396,9 +4532,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
               "root",
-              "user"
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4445,8 +4581,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4478,8 +4615,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4519,8 +4657,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4554,8 +4693,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4608,8 +4748,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4651,8 +4792,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4684,8 +4826,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4725,8 +4868,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4760,8 +4904,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4803,8 +4948,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4836,8 +4982,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4877,8 +5024,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4912,8 +5060,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -4966,8 +5115,9 @@ func init() {
         "security": [
           {
             "OAuth2": [
-              "admin",
-              "root"
+              "root",
+              "student",
+              "teacher"
             ]
           }
         ],
@@ -5509,17 +5659,17 @@ func init() {
       "flow": "password",
       "tokenUrl": "http://localhost:8080/v1/oauth/token",
       "scopes": {
-        "admin": "管理员",
         "root": "超级管理员",
-        "user": "普通用户"
+        "student": "学生",
+        "teacher": "老师"
       }
     }
   },
   "security": [
     {
       "OAuth2": [
-        "user",
-        "admin",
+        "student",
+        "teacher",
         "root"
       ]
     }

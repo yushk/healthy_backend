@@ -1,6 +1,8 @@
 package server
 
 import (
+	"strings"
+
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/sirupsen/logrus"
 	"github.com/yushk/healthy_backend/apiserver/restapi/operations/user"
@@ -137,4 +139,25 @@ func GetUsers(params user.GetUsersParams, principal *v1.Principal) middleware.Re
 		Items:      items,
 	}
 	return user.NewGetUsersOK().WithPayload(payload)
+}
+
+func GetUserInfo(params user.GetUserInfoParams, principal *v1.Principal) middleware.Responder {
+	ctx := params.HTTPRequest.Context()
+	headerContent := params.HTTPRequest.Header.Get("authorization")
+	token := strings.Split(headerContent, " ")[1]
+
+	authenticate, err := client.User().Authenticate(ctx, &pb.AuthenticateRequest{
+		Token: token,
+	})
+	if err != nil {
+		return Error(err)
+	}
+
+	reply, err := client.User().GetUser(ctx, &pb.GetUserRequest{
+		Id: authenticate.Id,
+	})
+	if err != nil {
+		return Error(err)
+	}
+	return user.NewGetUserOK().WithPayload(convert.UserPb2V1(reply))
 }

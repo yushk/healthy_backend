@@ -167,6 +167,9 @@ func configureAPI(api *operations.HealthyAPI) http.Handler {
 	api.UserGetUserHandler = user.GetUserHandlerFunc(func(params user.GetUserParams, principal *v1.Principal) middleware.Responder {
 		return server.GetUser(params, principal)
 	})
+	api.UserGetUserInfoHandler = user.GetUserInfoHandlerFunc(func(params user.GetUserInfoParams, principal *v1.Principal) middleware.Responder {
+		return server.GetUserInfo(params, principal)
+	})
 	api.UserGetUsersHandler = user.GetUsersHandlerFunc(func(params user.GetUsersParams, principal *v1.Principal) middleware.Responder {
 		return server.GetUsers(params, principal)
 	})

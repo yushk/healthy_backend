@@ -153,6 +153,9 @@ func NewHealthyAPI(spec *loads.Document) *HealthyAPI {
 		UserGetUserHandler: user.GetUserHandlerFunc(func(params user.GetUserParams, principal *v1.Principal) middleware.Responder {
 			return middleware.NotImplemented("operation user.GetUser has not yet been implemented")
 		}),
+		UserGetUserInfoHandler: user.GetUserInfoHandlerFunc(func(params user.GetUserInfoParams, principal *v1.Principal) middleware.Responder {
+			return middleware.NotImplemented("operation user.GetUserInfo has not yet been implemented")
+		}),
 		UserGetUsersHandler: user.GetUsersHandlerFunc(func(params user.GetUsersParams, principal *v1.Principal) middleware.Responder {
 			return middleware.NotImplemented("operation user.GetUsers has not yet been implemented")
 		}),
@@ -332,6 +335,8 @@ type HealthyAPI struct {
 	UserGetPersonalsHandler user.GetPersonalsHandler
 	// UserGetUserHandler sets the operation handler for the get user operation
 	UserGetUserHandler user.GetUserHandler
+	// UserGetUserInfoHandler sets the operation handler for the get user info operation
+	UserGetUserInfoHandler user.GetUserInfoHandler
 	// UserGetUsersHandler sets the operation handler for the get users operation
 	UserGetUsersHandler user.GetUsersHandler
 	// MonitorGetWorkHandler sets the operation handler for the get work operation
@@ -558,6 +563,9 @@ func (o *HealthyAPI) Validate() error {
 	}
 	if o.UserGetUserHandler == nil {
 		unregistered = append(unregistered, "user.GetUserHandler")
+	}
+	if o.UserGetUserInfoHandler == nil {
+		unregistered = append(unregistered, "user.GetUserInfoHandler")
 	}
 	if o.UserGetUsersHandler == nil {
 		unregistered = append(unregistered, "user.GetUsersHandler")
@@ -856,6 +864,10 @@ func (o *HealthyAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/v1/user/{id}"] = user.NewGetUser(o.context, o.UserGetUserHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/v1/user"] = user.NewGetUserInfo(o.context, o.UserGetUserInfoHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
