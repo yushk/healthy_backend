@@ -2369,23 +2369,28 @@ func init() {
       "description": "班级信息",
       "type": "object",
       "properties": {
+        "faculty": {
+          "description": "学院",
+          "type": "string",
+          "x-omitempty": false
+        },
+        "grade": {
+          "description": "年级",
+          "type": "string",
+          "x-omitempty": false
+        },
         "id": {
           "type": "string",
           "x-omitempty": false,
           "readOnly": true
         },
-        "owner": {
-          "description": "班级内老师 用于发布作业权限",
+        "number": {
+          "description": "班级",
           "type": "string",
           "x-omitempty": false
         },
-        "students": {
-          "description": "班级内学生 用于查看作业权限",
-          "type": "string",
-          "x-omitempty": false
-        },
-        "teachers": {
-          "description": "班级内老师 用于发布作业权限",
+        "subject": {
+          "description": "专业",
           "type": "string",
           "x-omitempty": false
         }
@@ -2564,6 +2569,12 @@ func init() {
           "type": "string",
           "x-omitempty": false
         },
+        "class": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Class"
+          }
+        },
         "gender": {
           "description": "性别",
           "type": "string",
@@ -2577,6 +2588,15 @@ func init() {
         "name": {
           "description": "姓名",
           "type": "string",
+          "x-omitempty": false
+        },
+        "type": {
+          "description": "角色",
+          "type": "string",
+          "enum": [
+            "student",
+            "teacher"
+          ],
           "x-omitempty": false
         },
         "userid": {
@@ -5207,23 +5227,28 @@ func init() {
       "description": "班级信息",
       "type": "object",
       "properties": {
+        "faculty": {
+          "description": "学院",
+          "type": "string",
+          "x-omitempty": false
+        },
+        "grade": {
+          "description": "年级",
+          "type": "string",
+          "x-omitempty": false
+        },
         "id": {
           "type": "string",
           "x-omitempty": false,
           "readOnly": true
         },
-        "owner": {
-          "description": "班级内老师 用于发布作业权限",
+        "number": {
+          "description": "班级",
           "type": "string",
           "x-omitempty": false
         },
-        "students": {
-          "description": "班级内学生 用于查看作业权限",
-          "type": "string",
-          "x-omitempty": false
-        },
-        "teachers": {
-          "description": "班级内老师 用于发布作业权限",
+        "subject": {
+          "description": "专业",
           "type": "string",
           "x-omitempty": false
         }
@@ -5402,6 +5427,12 @@ func init() {
           "type": "string",
           "x-omitempty": false
         },
+        "class": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Class"
+          }
+        },
         "gender": {
           "description": "性别",
           "type": "string",
@@ -5415,6 +5446,15 @@ func init() {
         "name": {
           "description": "姓名",
           "type": "string",
+          "x-omitempty": false
+        },
+        "type": {
+          "description": "角色",
+          "type": "string",
+          "enum": [
+            "student",
+            "teacher"
+          ],
           "x-omitempty": false
         },
         "userid": {

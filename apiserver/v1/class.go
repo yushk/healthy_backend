@@ -19,18 +19,21 @@ import (
 // swagger:model Class
 type Class struct {
 
+	// 学院
+	Faculty string `json:"faculty"`
+
+	// 年级
+	Grade string `json:"grade"`
+
 	// id
 	// Read Only: true
 	ID string `json:"id"`
 
-	// 班级内老师 用于发布作业权限
-	Owner string `json:"owner"`
+	// 班级
+	Number string `json:"number"`
 
-	// 班级内学生 用于查看作业权限
-	Students string `json:"students"`
-
-	// 班级内老师 用于发布作业权限
-	Teachers string `json:"teachers"`
+	// 专业
+	Subject string `json:"subject"`
 }
 
 // Validate validates this class

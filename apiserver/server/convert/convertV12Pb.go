@@ -6,8 +6,16 @@ import (
 )
 
 func PersonalV12Pb(v1Personal *v1.Personal) (pbPersonal *pb.Personal) {
+	class := []*pb.Class{}
+	if len(pbPersonal.Class) > 0 {
+		for _, v := range v1Personal.Class {
+			class = append(class, ClassV12Pb(v))
+		}
+	}
 	pbPersonal = &pb.Personal{
 		Id:     v1Personal.ID,
+		Class:  class,
+		Type:   v1Personal.Type,
 		Name:   v1Personal.Name,
 		Userid: v1Personal.Userid,
 		Gender: v1Personal.Gender,
@@ -38,10 +46,11 @@ func CaseDataV12Pb(v1CaseData *v1.CaseData) (pbCaseData *pb.CaseData) {
 
 func ClassV12Pb(v1Class *v1.Class) (pbClass *pb.Class) {
 	pbClass = &pb.Class{
-		Id:       v1Class.ID,
-		Owner:    v1Class.Owner,
-		Teachers: v1Class.Teachers,
-		Students: v1Class.Students,
+		Id:      v1Class.ID,
+		Grade:   v1Class.Grade,
+		Faculty: v1Class.Faculty,
+		Number:  v1Class.Number,
+		Subject: v1Class.Subject,
 	}
 	return
 }

@@ -6,9 +6,10 @@ option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
 
 message Class {
     string id = 1;
-    string owner = 3;
-    string teachers = 4;
-    string students = 5;
+    string grade = 3;
+    string faculty = 4;
+    string number = 5;
+    string subject = 6;
 
 }
 

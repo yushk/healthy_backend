@@ -1432,6 +1432,17 @@ definitions:
         type: string
         x-omitempty: false
         readOnly: true
+      class:
+        type: array
+        items:
+          $ref: '#/definitions/Class'
+      type:
+        type: string
+        x-omitempty: false
+        description: 角色
+        enum:
+          - student
+          - teacher
       name:
         type: string
         x-omitempty: false
@@ -1545,18 +1556,22 @@ definitions:
         type: string
         x-omitempty: false
         readOnly: true
-      owner:
+      grade:
         type: string
         x-omitempty: false
-        description: 班级内老师 用于发布作业权限
-      teachers:
+        description: 年级
+      faculty:
         type: string
         x-omitempty: false
-        description: 班级内老师 用于发布作业权限
-      students:
+        description: 学院
+      number:
         type: string
         x-omitempty: false
-        description: 班级内学生 用于查看作业权限
+        description: 班级
+      subject:
+        type: string
+        x-omitempty: false
+        description: 专业
   MeasureDetails:
     type: object
     description: 测评数据明细列表

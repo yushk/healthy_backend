@@ -4,12 +4,16 @@ package pb;
 
 option go_package = "gitee.com/healthy/healthy/manager/pb;pb";
 
+import "class.proto";
+
 message Personal {
     string id = 1;
-    string userid = 2;
-    string gender = 3;
-    string birth = 4;
-    string name = 5;
+    repeated Class class = 2;
+    string type = 3;
+    string userid = 4;
+    string gender = 5;
+    string birth = 6;
+    string name = 7;
 }
 
 service PersonalManager {

@@ -7,6 +7,8 @@ package v1
 
 import (
 	"context"
+	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -22,6 +24,9 @@ type Personal struct {
 	// 出生年月
 	Birth string `json:"birth"`
 
+	// class
+	Class []*Class `json:"class"`
+
 	// 性别
 	Gender string `json:"gender"`
 
@@ -32,18 +37,105 @@ type Personal struct {
 	// 姓名
 	Name string `json:"name"`
 
+	// 角色
+	// Enum: [student teacher]
+	Type string `json:"type"`
+
 	// 用户id
 	Userid string `json:"userid"`
 }
 
 // Validate validates this personal
 func (m *Personal) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateClass(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Personal) validateClass(formats strfmt.Registry) error {
+	if swag.IsZero(m.Class) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Class); i++ {
+		if swag.IsZero(m.Class[i]) { // not required
+			continue
+		}
+
+		if m.Class[i] != nil {
+			if err := m.Class[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("class" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+var personalTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["student","teacher"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		personalTypeTypePropEnum = append(personalTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// PersonalTypeStudent captures enum value "student"
+	PersonalTypeStudent string = "student"
+
+	// PersonalTypeTeacher captures enum value "teacher"
+	PersonalTypeTeacher string = "teacher"
+)
+
+// prop value enum
+func (m *Personal) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, personalTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Personal) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
 	return nil
 }
 
 // ContextValidate validate this personal based on the context it is used
 func (m *Personal) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateClass(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
 		res = append(res, err)
@@ -52,6 +144,24 @@ func (m *Personal) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Personal) contextValidateClass(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Class); i++ {
+
+		if m.Class[i] != nil {
+			if err := m.Class[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("class" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

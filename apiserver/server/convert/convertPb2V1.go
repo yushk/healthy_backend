@@ -9,9 +9,16 @@ func PersonalPb2V1(pbPersonal *pb.Personal) (v1Personal *v1.Personal) {
 	if pbPersonal == nil {
 		return
 	}
-
+	class := []*v1.Class{}
+	if len(pbPersonal.Class) > 0 {
+		for _, v := range pbPersonal.Class {
+			class = append(class, ClassPb2V1(v))
+		}
+	}
 	v1Personal = &v1.Personal{
 		ID:     pbPersonal.Id,
+		Class:  class,
+		Type:   pbPersonal.Type,
 		Name:   pbPersonal.Name,
 		Userid: pbPersonal.Userid,
 		Gender: pbPersonal.Gender,
@@ -54,10 +61,11 @@ func ClassPb2V1(pbClass *pb.Class) (v1Class *v1.Class) {
 	}
 
 	v1Class = &v1.Class{
-		ID:       pbClass.Id,
-		Owner:    v1Class.Owner,
-		Teachers: v1Class.Teachers,
-		Students: v1Class.Students,
+		ID:      pbClass.Id,
+		Grade:   pbClass.Grade,
+		Faculty: pbClass.Faculty,
+		Number:  pbClass.Number,
+		Subject: pbClass.Subject,
 	}
 	return
 }
